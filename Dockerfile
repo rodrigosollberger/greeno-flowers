@@ -12,5 +12,19 @@ WORKDIR /app
 #the RUN command runs a command while the image is being built. Below, we want Docker to install npm packages
 RUN npm install
 
+#we are exposing port 3000 as it is the one that the app uses
+EXPOSE 3000
+
 #the CMD command runs a command after te image is built, once we run the container. As with this project, CMD is usually a start command
 CMD ["npm", "start"]
+
+#go to the terminal then and run Docker build, which has three arguments ('-t' is for tag):
+#    docker build -t name-of-the-image where-is-my-Dockerfile
+# we should then type: docker build -t first-image .
+# the '.' above is used to implicitly tell that's where the Dockerfile is
+
+#RUNNING the docker image:
+# the argument '-d' will run in the background, in detach mode, meaning it will not hijack the terminal
+# the argument '-p' will bind the port that has been exposed in the container to one in the operating system
+#there are further arguments that can be used, but these will suffice for now
+#   docker run -d -p 3000:3000 first-image
